@@ -1,4 +1,4 @@
-package com.aeon.biblioteca.entityes;
+package com.aeon.biblioteca.entities;
 
 import java.util.Date;
 

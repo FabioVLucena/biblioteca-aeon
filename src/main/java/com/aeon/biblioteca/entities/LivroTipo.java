@@ -1,6 +1,6 @@
-package com.aeon.biblioteca.entityes;
+package com.aeon.biblioteca.entities;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,26 +13,21 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-
 @Data
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "categoria")
-public class Categoria {
-
+@Table(name = "livrotipo")
+public class LivroTipo {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ctg_id")
+	@Column(name = "livT_id")
 	private Integer id;
 	
-	@Column(name = "ctg_descricao", nullable = false, length = 120, unique = false)
+	@Column(name = "livT_descricao", nullable = false, length = 120, unique = false)
 	private String descricao;
-
-	@Column(name = "ctg_tag", nullable = true, length = 100, unique = false)
-	private String tag;
 	
-	@Column(name = "ctg_dataCadastro", nullable = false)
+	@Column(name = "livT_dataCadastro")
 	private Date dataCadastro;
 }

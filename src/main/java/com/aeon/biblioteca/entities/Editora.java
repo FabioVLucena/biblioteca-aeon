@@ -1,4 +1,4 @@
-package com.aeon.biblioteca.entityes;
+package com.aeon.biblioteca.entities;
 
 import java.util.Date;
 
@@ -10,7 +10,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -21,22 +20,24 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "autorlivro")
-public class AutorLivro {
+@Table(name = "editora")
+public class Editora {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "autLv_id")
+	@Column(name = "edit_id")
 	private Integer id;
+	
+	@Column(name = "edit_nome", nullable = false, length = 120, unique = false)
+	private String nome;
+	
+	@ManyToOne
+	@JoinColumn(name = "sit_id", foreignKey = @ForeignKey(name = "fk_editora_situacao"))
+	private Situacao situacao;
 
-	@ManyToOne
-	@JoinColumn(name = "liv_id",  foreignKey = @ForeignKey(name = "fk_autorLivro_livro"))
-	private Livro livro;
+	@Column(name = "edit_dataCadastro", nullable = true)
+	private Date dataCadastro;
 	
-	@ManyToOne
-	@JoinColumn(name = "aut_id", foreignKey = @ForeignKey(name = "fk_autorLivro_autor"))
-	private Autor autor;
-	
-	@Column(name = "autLv_dataVinculo", nullable = false)
-	private Date dataVinculo;
+	@Column(name = "edit_dataAbertura", nullable = false)
+	private Date dataAbertura;
 }
