@@ -1,4 +1,4 @@
-package com.aeon.biblioteca.entityes;
+package com.aeon.biblioteca.entities;
 
 import java.util.Date;
 
@@ -20,24 +20,22 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "editora")
-public class Editora {
+@Table(name = "livrocategoria")
+public class LivroCategoria {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "edit_id")
+	@Column(name = "livCtg_id")
 	private Integer id;
 	
-	@Column(name = "edit_nome", nullable = false, length = 120, unique = false)
-	private String nome;
-	
 	@ManyToOne
-	@JoinColumn(name = "sit_id", foreignKey = @ForeignKey(name = "fk_editora_situacao"))
-	private Situacao situacao;
+	@JoinColumn(name = "liv_id", foreignKey = @ForeignKey(name = "fk_livroCategoria_livro"))
+	private Livro livro;
 
-	@Column(name = "edit_dataCadastro", nullable = true)
-	private Date dataCadastro;
+	@ManyToOne
+	@JoinColumn(name = "ctg_id", foreignKey = @ForeignKey(name = "fk_livroCategoria_categoria"))
+	private Categoria categoria;
 	
-	@Column(name = "edit_dataAbertura", nullable = false)
-	private Date dataAbertura;
+	@Column(name = "livCtg_dataVinculo", nullable = false)
+	private Date dataVinculo;
 }

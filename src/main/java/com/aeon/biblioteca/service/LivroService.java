@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aeon.biblioteca.entityes.AutorLivro;
-import com.aeon.biblioteca.entityes.Livro;
+import com.aeon.biblioteca.entities.AutorLivro;
+import com.aeon.biblioteca.entities.Livro;
 import com.aeon.biblioteca.repositories.AutorLivroRepository;
 import com.aeon.biblioteca.repositories.LivroRepository;
 
@@ -21,11 +21,11 @@ public class LivroService {
 	@Autowired
 	private AutorLivroRepository autLivDAO;
 	
-	@Transactional(readOnly = true)
-	public void insert(Livro liv) {
-		livDAO.save(liv);
-		System.out.println("livro salvo com sucesso!!");
-	}
+//	@Transactional(readOnly = true)
+//	public void insert(Livro liv) {
+//		livDAO.save(liv);
+//		System.out.println("livro salvo com sucesso!!");
+//	}
 		
 	@Transactional(readOnly = true)
 	public List<Livro> getLivros() {
