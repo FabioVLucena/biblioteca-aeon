@@ -1,49 +1,34 @@
 package com.aeon.biblioteca.service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aeon.biblioteca.entities.AutorLivro;
 import com.aeon.biblioteca.entities.Livro;
-import com.aeon.biblioteca.repositories.AutorLivroRepository;
 import com.aeon.biblioteca.repositories.LivroRepository;
 
 @Service
 public class LivroService {
 
 	@Autowired
-	private LivroRepository livDAO;
+	private LivroRepository livroRepo;
 	
-	@Autowired
-	private AutorLivroRepository autLivDAO;
-	
-//	@Transactional(readOnly = true)
-//	public void insert(Livro liv) {
-//		livDAO.save(liv);
-//		System.out.println("livro salvo com sucesso!!");
-//	}
-		
 	@Transactional(readOnly = true)
-	public List<Livro> getLivros() {
-		List<Livro> livList = livDAO.findAll(); 
-		return livList;
+	public void save(Livro liv) {
+		livroRepo.save(liv);
 	}
 	
 	@Transactional(readOnly = true)
-	public List<Livro> getLivrosAutor(Long autId) {
-		List<AutorLivro> autLivList = autLivDAO.findByAutor(autId); 
-		
-		List<Livro> livList = new ArrayList<Livro>();
-		
-		for(AutorLivro autLivBean : autLivList) {
-			livList.add(autLivBean.getLivro());
-		}
-		
-		return livList;
+	public Livro getById(Long id) {
+		Livro livro = livroRepo.getById(id);
+		return livro;
 	}
 	
+	@Transactional(readOnly = true)
+	public List<Livro> findAll() {
+		List<Livro> livList = livroRepo.findAll(); 
+		return livList;
+	}
 }

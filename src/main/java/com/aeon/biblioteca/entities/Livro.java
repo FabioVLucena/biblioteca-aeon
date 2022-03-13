@@ -1,6 +1,6 @@
 package com.aeon.biblioteca.entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Livro {
 	private String nome;
 
 	@Column(name = "liv_dataLancamento", nullable = false)
-	private Date dataLancamento;
+	private LocalDateTime dataLancamento;
 
 	@ManyToOne
 	@JoinColumn(name = "edit_id", foreignKey = @ForeignKey(name = "fk_livro_editora"))

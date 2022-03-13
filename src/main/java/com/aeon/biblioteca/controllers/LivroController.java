@@ -1,8 +1,6 @@
 package com.aeon.biblioteca.controllers;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,18 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 import com.aeon.biblioteca.dto.LivroGetResponseDTO;
 import com.aeon.biblioteca.dto.LivroPostRequestDTO;
 import com.aeon.biblioteca.entities.Livro;
-import com.aeon.biblioteca.repositories.LivroRepository;
+import com.aeon.biblioteca.service.LivroService;
 
 @RestController
 @RequestMapping("/livro")
 public class LivroController {
 	
 	@Autowired
-	private LivroRepository livRepo;
+	private LivroService livroService;
 	
 	@GetMapping
 	public ResponseEntity<List<LivroGetResponseDTO>> list() {
-		List<Livro> usuList = livRepo.findAll();
+		List<Livro> usuList = livroService.findAll();
 		List<LivroGetResponseDTO> resList = LivroGetResponseDTO.convertList(usuList);
 		return ResponseEntity.ok(resList);
 	}
@@ -35,12 +33,8 @@ public class LivroController {
 	@PostMapping
 	public ResponseEntity<LivroGetResponseDTO> create(@RequestBody LivroPostRequestDTO livDTO) throws ParseException {
 		Livro liv = LivroPostRequestDTO.convert(livDTO);
-//		liv.setNome("FABIO TITNITM");
 		
-		Date data = new SimpleDateFormat("dd/MM/yyyy").parse("05/03/2022");
-		liv.setDataLancamento(data);
-		
-		livRepo.save(liv);
+		livroService.save(liv);
 		
 		return ResponseEntity.ok(LivroGetResponseDTO.convert(liv));
 	}

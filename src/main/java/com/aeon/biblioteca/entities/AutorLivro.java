@@ -1,6 +1,6 @@
 package com.aeon.biblioteca.entities;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -37,5 +37,5 @@ public class AutorLivro {
 	private Autor autor;
 	
 	@Column(name = "autLv_dataVinculo", nullable = false)
-	private Date dataVinculo;
+	private LocalDateTime dataVinculo;
 }

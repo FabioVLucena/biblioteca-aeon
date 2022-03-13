@@ -1,5 +1,6 @@
 package com.aeon.biblioteca.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,11 +12,13 @@ import lombok.Data;
 public class LivroGetResponseDTO {
 
 	private String nome;
+	private LocalDateTime dataLancamento;
 	
 	public static LivroGetResponseDTO convert(Livro liv) {
-		LivroGetResponseDTO usuDTO = new LivroGetResponseDTO();
-		usuDTO.setNome(liv.getNome());
-		return usuDTO;
+		LivroGetResponseDTO livroDTO = new LivroGetResponseDTO();
+		livroDTO.setNome(liv.getNome());
+		livroDTO.setDataLancamento(liv.getDataLancamento());
+		return livroDTO;
 	}
 
 	public static List<LivroGetResponseDTO> convertList(List<Livro> livList) {

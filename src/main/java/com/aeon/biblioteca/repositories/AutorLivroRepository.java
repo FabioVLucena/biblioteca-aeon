@@ -10,4 +10,5 @@ import com.aeon.biblioteca.entities.AutorLivro;
 @Repository
 public interface AutorLivroRepository extends JpaRepository<AutorLivro, Long>{
 	List<AutorLivro> findByAutor(Long autId);
+	List<AutorLivro> findByLivro(Long livId);
 }
